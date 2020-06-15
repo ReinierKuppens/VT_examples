@@ -18,7 +18,7 @@ if ~isempty(mat)
         Mt = [];    %Clear Mt, which is a temporary matrix
         Mt = [eye(c);ones(1,c)];                    %Fill Mt with the structure
         s  = size(M);                               %Check size of M
-        if isempty(M);                              %If M is an empty matrix
+        if isempty(M)                               %If M is an empty matrix
             M  = [M Mt] ;                           %It is possible to augment M and Mt directly
         else                                        %If M is not empty
             M  = [[M;zeros(1,s(2))] Mt];            %M and Mt are unequaly sized, so augment with appropriate number of zeros

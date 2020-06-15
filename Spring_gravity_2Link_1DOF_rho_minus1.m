@@ -90,48 +90,29 @@ for k = 1:numel(alpha)
     S_prime{k}          = T(rho_1*alpha(k),t1)*[S;ones(1,length(S(1,:)))];
 end
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%                Plot Mechanism                  %%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+C1 = [v1*cos(eta1); v1*sin(eta1)];
+C2 = [v2*cos(eta2); v2*sin(eta2)];
+
+C1_p = T(rho_1*alpha(1),t1)*[C1;1];
+C2_p = T(rho_1*alpha(1),t1)*T(rho_2*alpha(1),t2)*[C2;1];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%                     Make DNA                   %%%%
+%%%%     Construct Mechanism DNA datastructure      %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 DNA           = initializeDNA;
 DNA.incstr    = [1 3 3.*ones(1,nSpring)];
 DNA.edgelabel = [1 1 2.*ones(1,nSpring)];
-
-
-C1 = [v1*cos(eta1); v1*sin(eta1)]
-C2 = [v2*cos(eta2); v2*sin(eta2)]
-
-C1_p = T(rho_1*alpha(1),t1)*[C1;1];
-C2_p = T(rho_1*alpha(1),t1)*T(rho_2*alpha(1),t2)*[C2;1]
-
-% keyboard 
-
 DNA.Mpar(1,:) = NaN;
 DNA.Mpar(2,:) = [C1_p(1:2).' m1];
 DNA.Mpar(3,:) = [C2_p(1:2).' m2];
-
-
-
-
-DNA.Hpar = [[t1;0],[t2;0]];
-
-DNA.Spar = [S_prime{1}(1:2,:);
-            P_prime{1}(1:2,:);
-            zeros(1,nSpring);
-            ki];
+DNA.Hpar      = [[t1;0],[t2;0]];
+DNA.Spar      = [S_prime{1}(1:2,:);
+                 P_prime{1}(1:2,:);
+                 zeros(1,nSpring);
+                 ki];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%                   make state            %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
-        
-% [~,comPoint] = getMassLocations(DNA);
-% 
-% C1 = comPoint{1}.';
-% C2 = comPoint{2}.';
-% keyboard 
 
 C1_prime         = cell(1,numel(alpha));
 C2_prime         = cell(1,numel(alpha));
@@ -143,72 +124,18 @@ end
 
 for k = 1:length(alpha)
     state(k,:) = [C1_prime{k}(1:2,:).', rho_1*alpha(k), C2_prime{k}(1:2,:).', (rho_2+rho_1)*alpha(k)];
-%     t(k) = k;
 end
 t=alpha;
-
-% warning off
-% figure('position',[2200,200,350,350])
-% plotmDNA(DNA,t,state)
-% hold on
-
-% plot(state(:,1),state(:,2))
-% hold on; plot(state(:,4),state(:,5))
- 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%                   test    energies             %%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
- %Compute energies
-% stifness = ones(1,nSpring) ;
-for k = 1:numel(alpha)
-    for ii = 1:nSpring
-        Ui(k,ii) = 0.5*ki(ii)*((P_prime{k}(1,ii)-S_prime{k}(1,ii))^2 + (P_prime{k}(2,ii)-S_prime{k}(2,ii))^2);
-    end
-end
-Utotal = sum(Ui,2);
-
-Ug     = getGravityEnergy(DNA,t,state).';
-Utotal = Utotal + sum(Ug,2); 
-
-% figure;hold on 
-% for k = 1:nSpring
-%    plot(alpha,Ui(:,k),'r','linewidth',1) 
-% end
-% plot(alpha,Ug,'--k','linewidth',1)
-% plot(alpha,Utotal,'-k','linewidth',1)
-% title('test1')
-
-[Es,dEs]            = getEnergies(DNA,t,state);
-% figure;hold on;
-Ug = Ug.';
-Et = zeros(1,numel(t));
-for k = 1:numel(Es)
-%     plot(alpha,Es{k},'r')
-    Et = Et + Es{k};
-end
-
-Et = Et+sum(Ug);
-% plot(alpha,Et,'k')
-% plot(alpha,Ug,'--k')
-% title('test 2')
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%                     ANIMATE                    %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
 
 warning off 
 
 plotEnergies(DNA,t,state)
-
-figure('color',[1,1,1]); 
 plotmDNA(DNA,t,state)
-
 animateDNA(DNA,t,state)
 
 

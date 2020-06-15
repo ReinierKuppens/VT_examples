@@ -21,21 +21,11 @@ if nS>0
     
     for k = 1:nS
         
-        p1 = DNA.Spar(1:2,k);
-        p2 = DNA.Spar(3:4,k);
-%         L0 = DNA.Spar(5,k);
-        
-%         nCoils(k)       = ceil(norm(p1-p2))*3;
-%         distUncoiled(k) = norm(p1-p2)/3;
-%         maxL(k)         = L0*3+15;
-
-        Lspring = getSpringLength(DNA,t,qss);
-        
-        
-
+        p1          = DNA.Spar(1:2,k);
+        p2          = DNA.Spar(3:4,k);
+        Lspring     = getSpringLength(DNA,t,qss);
         nCoils(k)           = 15;
         distUncoiled(k)     = 0.1;
-% %         maxL(k)             = 3;
         maxL(k)             = max(Lspring(:,k))*2;
         nCoils(k)           = round(maxL(k)*4);
 

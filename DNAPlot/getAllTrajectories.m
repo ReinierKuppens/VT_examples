@@ -16,7 +16,6 @@ allTraj = [qssxy hingeState(DNA,t,qss)];    %Augment with hinge position data
 nTraj   = size(allTraj,2)/2;                %Get number of trajectories
 
 
-
 for k = 1:nTraj
     
     if any(abs(sum(diff(allTraj(:,k*2-1:k*2))))>1e-5)

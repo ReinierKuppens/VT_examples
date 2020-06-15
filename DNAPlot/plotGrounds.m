@@ -14,12 +14,9 @@
 function []=plotGrounds(DNA)
 hold on
 
-% cdata       = [1 1 1];
-
-[xOutline,yOutline,xSmallCircle,ySmallCircle,xlines,ylines] = getGroundOutline2(DNA);
+[xOutline,yOutline,xSmallCircle,ySmallCircle,xlines,ylines] = getGroundOutline(DNA);
 
 wLine = 1;
-
 
 for k = 1:numel(xOutline)
     fill(xOutline{k},yOutline{k},[1 1 1],'Linewidth',wLine);

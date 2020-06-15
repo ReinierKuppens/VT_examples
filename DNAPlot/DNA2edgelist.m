@@ -49,16 +49,14 @@ end
 edgelist = zeros(2,length(incstr));
 
 for k = 1:size(inc,2)
-    
     edgelist(:,k) = find(inc(:,k)==1);
-    
 end
 
 % if isempty(edgelist)
 %     edgelist = zeros(0,2);
 % end
 
-end%Functioin
+end%Function
 
 
 

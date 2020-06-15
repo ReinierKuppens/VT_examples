@@ -21,16 +21,12 @@ for k = 1:nM
     [polx{k},poly{k},scx{k},scy{k}] = getMassOutline(massPoints{k}); %ROW VECTORS
 end
 
-%     cdata = linspecer(6);
-
 for k =1:nM
     fill(polx{k},poly{k},cdata(k,:),'Edgecolor','k');
     alpha(0.5)
 end
 
 comColors = {'k','b','r','m','c'};
-
-
 for k =1:nM
     for l =1:numel(scx{k})
         fill(scx{k}{l},scy{k}{l},'w','Linewidth',0.5);

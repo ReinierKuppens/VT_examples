@@ -1,4 +1,4 @@
-%   C = nCr(n,k) returns the number of combinations with
+%   C = nCr(n,2) returns the number of combinations with
 %   
 %   n the number of values to pick from 
 %   k the number of picks
@@ -21,9 +21,7 @@ function C = nCr(n,k)
 if n>100
     error('nCr contains a list with 100 elements. Please select n<100 or add more elements to the list')
 end
-%nCr is a function that is called many times in the EA. Therefore, no matter
-%what function I used to compute the number of ways to pick k form n, it's
-%self time was one of the largest. Because of this we simply use a list.
+
 %See https://oeis.org/A000217 for the sequence.
 
 A000217=[  0
@@ -129,21 +127,4 @@ A000217=[  0
 
 C = A000217(n);
     
-% VChooseK is a mex file.
-%
-%   For speed cast the input to integer types if possible:
-%     Y = double(VChooseK(int16(1:1000), 2);
-%   is faster than:
-%     Y = VChooseK(1:1000, 2);
-%
-% For details on VChooseK see doc in toolbox folder
-
-% if n>=k
-%     Cmat    = double(VChooseK(int16(1:n),k));
-%     C       = size(Cmat,1);
-% %     C = nchoosek(n,k);%SLOW
-% else
-%     C = 0;
-% end
-
 end

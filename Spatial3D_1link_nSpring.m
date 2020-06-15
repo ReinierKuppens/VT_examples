@@ -1,8 +1,5 @@
 
 
-
-
-
 clear all 
 close all 
 clc 
@@ -78,7 +75,7 @@ Eq = [  C1 + k1*xp1*xs1+k2*xp2*xs2-g*m*xc1
     ys = [ys1 ys2 ysn2];
     zs = [zs1 zs2 zsn2];
     
-    Kstif  = [k1 k2 kn2]
+    Kstif  = [k1 k2 kn2];
     
  P = [xp;yp;zp;ones(1,nSpring)];
  S = [xs;ys;zs;ones(1,nSpring)];
@@ -101,42 +98,30 @@ Ry = @(a) [cos(a)  0       sin(a);
  Rx = @(a) [1       0       0 ; 
             0       cos(a)  -sin(a); 
             0       sin(a)  cos(a);];
-        
-
  
  Rzyx = @(a,b,c) Rz(a)*Ry(b)*Rx(c);
  
  H = @(a,b,c,t) [Rzyx(a,b,c), [t;0;0] ; [0,0,0,1]];
  
- 
- 
- 
  for k = 1:numel(alpha1) 
-%     keyboard 
      P_prime(:,:,k) = H(alpha1(k),alpha2(k),alpha3(k),0)*P;
      S_prime(:,:,k) = S;
      M_prime(:,k) = H(alpha1(k),alpha2(k),alpha3(k),0)*C;
-          
  end
  
  D = P_prime-S_prime;
  
   for k = 1:numel(alpha1) 
       for ii = 1:nSpring
-    
         Ue(ii,k) = 0.5*Kstif(ii)*(D(:,ii,k).'*D(:,ii,k));
-
       end
-     
      Ug(1,k) = m*g*M_prime(1,k);
-     
  end
  
- Ug = Ug - min(Ug);
- 
+ Ug     = Ug - min(Ug);
  Utotal = sum([Ue;Ug]);
  
-Fsize = 16
+Fsize = 16;
 
 figure('color',[1,1,1])
 set(gca,'TickLabelInterpreter', 'latex','fontsize',Fsize);
@@ -149,13 +134,12 @@ grid on
 
  
  plot(alpha1,Utotal,'k','linewidth',2) ;hold on 
-  plot(alpha1,Ug,'--k','linewidth',2) 
+ plot(alpha1,Ug,'--k','linewidth',2) 
 
 for k = 1:nSpring
    plot(alpha1,Ue(k,:),'-r','linewidth',2) 
 end
- plot(2*pi,0.01,'w.')
-
+plot(2*pi,0.01,'w.')
      
 legend({'Total $U$','Gravitational $U_g$', 'Spring $U_e$'},'interpreter','latex','location','Northwest','fontsize',Fsize) 
 

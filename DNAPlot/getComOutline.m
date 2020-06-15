@@ -26,11 +26,5 @@ y1 = [p(2) y1];
 x2 = [p(1) x2];
 y2 = [p(2) y2];
 
-
-% fill(x3,y3,'w')
-% plot(x3,y3,'k')
-% fill(x1,y1,'k')
-% fill(x2,y2,'k')
-
 end%Function
 

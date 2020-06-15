@@ -13,7 +13,6 @@ clc
 
 k1      = rand;
 k2      = rand; 
-
 m1      = rand;
 g       = 9.81;
 

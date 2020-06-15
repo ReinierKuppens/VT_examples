@@ -49,28 +49,20 @@ end%Function
 
 function edgelist = selectEdgelist(DNA,edgetype)
 
-
 if      strcmp(edgetype,'H')
-    
     edgelist = DNA2edgelist(DNA,'H');
     
 elseif  strcmp(edgetype,'S')
-    
     edgelist = DNA2edgelist(DNA,'S');
     
 elseif strcmp(edgetype,'P')
-    
     edgelist = DNA2edgelist(DNA,'P');
-
-elseif strcmp(edgetype,'Pm')
     
+elseif strcmp(edgetype,'Pm')
     edgelist = DNA2edgelist(DNA,'Pm');
     
 else
-
     edgelist = DNA2edgelist(DNA,'all');
-
-    
 end
 
 end%Function

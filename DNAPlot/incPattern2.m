@@ -1,15 +1,8 @@
 
 
 
-
-
-
-%   M = GenCombinationMatrix(nCol) generates a matrix with all combinations
-%   up to at least nCol columns. 
-%   
-%   [M,v] = GenCombinationMatrix(nCol) generates a matrix with all
-%   combinations up to at least nE collumns and returns the minimum number
-%   of vertices required.
+%   M = incPattern2(nCol) generates a matrix with all combinations up to at 
+%   least nE collumns and returns the minimum number   of vertices required.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                         %

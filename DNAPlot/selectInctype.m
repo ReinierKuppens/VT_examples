@@ -12,10 +12,6 @@ switch edgetype
         incstr = DNA.incstr(DNA.edgelabel==1);
     case 'S'
         incstr = DNA.incstr(DNA.edgelabel==2);
-    case 'P'
-        incstr = DNA.incstr(DNA.edgelabel==3);
-    case 'Pm'
-        incstr = DNA.incstr(DNA.edgelabel==4);
     case 'all'
         incstr = DNA.incstr;
 end%Switch
