@@ -16,17 +16,6 @@
 %           'all' -> for complete DNA
 %   Output: 2xN vector containing the vertices that are connected in its
 %           columns 
-%
-% % % % % DNA2edgelist(DNA,edgetype,data) returns the edgelist that is defined by 
-% % % % % the incidence data of edgetype + aditional data of choice.
-% % % % %
-% % % % %   Input:  DNA,edgetype,data, currently three options are possible
-% % % % %           'lab'       -> adds labels 
-% % % % %           'par'       -> adds parameters    
-% % % % %           'lab+par'   -> adds both labels and parameters
-% % % % %
-% % % % %   Output: depending on the input 'data' a differently sized matrix with
-% % % % %   the data
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                         %

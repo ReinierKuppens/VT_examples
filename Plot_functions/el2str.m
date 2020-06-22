@@ -1,9 +1,8 @@
+
+
+
+
 %str = el2str(el) gives the incidence string from an edgelist
-%
-%
-%
-%
-%
 % Author:        P.R. Kuppens 
 % Date modified: 2017-12-20
 %

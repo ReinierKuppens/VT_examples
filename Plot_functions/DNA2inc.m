@@ -13,7 +13,6 @@
 %   Input:  DNA and edgetype, currently three options are possible:
 %           'H'   -> for hinges
 %           'S'   -> for springs
-%           'R'   -> for gear ratios
 %           'all' -> for complete DNA
 %   Output: Incidence matrix
 %
@@ -54,13 +53,7 @@ if      strcmp(edgetype,'H')
     
 elseif  strcmp(edgetype,'S')
     edgelist = DNA2edgelist(DNA,'S');
-    
-elseif strcmp(edgetype,'P')
-    edgelist = DNA2edgelist(DNA,'P');
-    
-elseif strcmp(edgetype,'Pm')
-    edgelist = DNA2edgelist(DNA,'Pm');
-    
+        
 else
     edgelist = DNA2edgelist(DNA,'all');
 end
